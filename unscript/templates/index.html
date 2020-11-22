@@ -1,0 +1,186 @@
+
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+ <!-- graph 1 --> 
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-chart">
+          <div class="card-header ">
+            <div class="row">
+              <div class="col-sm-6 text-left">
+                <h5 class="card-category">COVID 19 Overview </h5>
+                <h2 class="card-title" id = "tot">Active Patients</h2>
+              </div>
+              <div class="col-sm-6">
+                <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                  <label class="btn btn-sm btn-primary btn-simple active" id="0">
+                    <input type="radio" name="options" checked>
+                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" onclick="active()">Active</span>
+                    <span class="d-block d-sm-none">
+                      <i class="tim-icons icon-single-02"></i>
+                    </span>
+                  </label>
+                  <label class="btn btn-sm btn-primary btn-simple" id="1">
+                    <input type="radio" class="d-none d-sm-none" name="options">
+                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block" onclick="recovered()">Recovered</span>
+                    <span class="d-block d-sm-none">
+                      <i class="tim-icons icon-gift-2"></i>
+                    </span>
+                  </label>
+                  <label class="btn btn-sm btn-primary btn-simple" id="2">
+                    <input type="radio" class="d-none" name="options">
+                    <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block " onclick="Deceased()">Deceased</span>
+                    <span class="d-block d-sm-none">
+                      <i class="tim-icons icon-tap-02"></i>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="chartBig1"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<p id="act" hidden>{{act}}</p>
+<p id="rec" hidden>{{rec}}</p>
+<p id="dec" hidden>{{dec}}</p>
+<p id = "totVents" hidden>{{totVents}}</p>
+<p id = "occVents" hidden>{{occVents}}</p>
+<p id = "availVents" hidden>{{availVents}}</p>
+<p id = "totBeds" hidden>{{totBeds}}</p>
+<p id = "occBeds" hidden>{{occBeds}}</p>
+<p id = "availBeds" hidden>{{availBeds}}</p>
+<p id="active"></p>
+<p id="dece"></p>
+<p id="reco"></p>
+
+    <!-- graph 1 end -->
+
+    <!-- graph 2 -->
+
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card card-chart">
+          <div class="card-header">
+
+            <div class ="row">
+              <div class="pr-md-2" style="padding-left: 4%;">
+                <h4 class="card-category">Total Beds</h4>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>{{totBeds}}</h3>
+              </div>
+              <div style="padding-left: 2%;
+                  border-left: 2px solid green;
+                  height: 60px;">
+              </div>
+
+              <div class="pr-md-2" style="padding-left: 2%;">
+                <h4 class="card-category">Occupied Beds</h4>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>{{occBeds}}</h3>
+              </div>
+              
+              <div style="padding-left: 2%;
+                  border-left: 2px solid green;
+                  height: 60px;">
+              
+               </div>
+              
+              <div class="pr-md-2" style="padding-left: 4%;">
+                <h4 class="card-category">Available Beds</h4>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>{{availBeds}}</h3>
+              </div> 
+
+            </div>          
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="chartLinePurple"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="card card-chart">
+          <div class="card-header">
+            <div class ="row">
+              <div class="pr-md-2" style="padding-left: 4%;">
+                <h5 class="card-category">Total Ventilators</h5>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>{{totVents}}</h3>
+              </div>
+
+              <div style="padding-left: 2%;
+                  border-left: 2px solid green;
+                  height: 60px;">
+              </div>
+              
+              <div class="pr-md-2" style="padding-left: 4%;"><h5 class="card-category">Occupied Ventilators</h5>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>{{occVents}}</h3>
+              </div>
+              
+              <div style="padding-left: 2%;
+                  border-left: 2px solid green;
+                  height: 60px;">
+              </div>
+              
+              <div class="pr-md-2" style="padding-left: 4%;"><h5 class="card-category">Available Ventilators</h5>
+                <h3 class="card-title"><i class="tim-icons icon-send text-success"></i>{{availVents}}</h3>
+              </div>        
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="chart-area">
+              <canvas id="chartLineGreen"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- graph 3 end -->
+
+<!-- removed unwanted part -->
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+  function recovered() {
+    document.getElementById("tot").innerHTML = "Recovery Rate";
+    
+  }
+
+  function active() {
+    document.getElementById("tot").innerHTML = "Active Patients";
+    
+  }
+
+  function Deceased() {
+    document.getElementById("tot").innerHTML = "Death Rate";
+    
+  }
+  </script>
+  <script>
+    $(document).ready(function() {
+      // Javascript method's body can be found in assets/js/demos.js
+      demo.initDashboardPageCharts();
+
+    });
+  </script>
+
+{% endblock javascripts %}
