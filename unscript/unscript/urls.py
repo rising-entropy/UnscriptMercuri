@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.Login.as_view(), name="login"),
     path('mercuri',include('mercuri.urls')),
+    path('logout', views.logout_user, name='logout'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

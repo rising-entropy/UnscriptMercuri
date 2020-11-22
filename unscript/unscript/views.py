@@ -27,4 +27,4 @@ class Login(View):
 
 def logout_user(request):
     logout(request)
-    return render(request, 'home.html', {})
+    return render(request, 'accounts/login.html', {})

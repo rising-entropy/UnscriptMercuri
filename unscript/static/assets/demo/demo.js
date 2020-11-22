@@ -522,8 +522,5 @@ demo = {
       data.labels = chart_labels;
       myChartData.update();
     });
-
   },
-  
-
 };
