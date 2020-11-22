@@ -27,8 +27,8 @@
             </thead>
             <tbody>
                 {% for i in pat %}
-              <a href = ""><tr>
-                <th scope="row">{{i.fName}} {{i.lName}}</th>
+              <a href = "{% url 'mercuri:modifyPatient' i.email %}"><tr>
+                <th scope="row"><a href = "{% url 'mercuri:modifyPatient' i.email %}">{{i.fName}} {{i.lName}}</a></th>
                 {% if i.currentStatus == 'Active' %}
                 <td><span style="color: #fad60c;">{{i.currentStatus}}</span></td>
                 {% elif i.currentStatus == 'Dead' %}

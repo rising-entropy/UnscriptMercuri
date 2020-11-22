@@ -52,34 +52,6 @@
 
       </form>
       <br><br>
-      <table class="table">
-        <thead class="thead-light">
-          <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Status</th>
-            <th scope="col">ID</th>
-            <th scope="col">Operated By</th>
-            <th scope="col">Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          <a href="">
-            <tr>
-              <th scope="row">{{i.fName}} {{i.lName}}</th>
-              {% if i.currentStatus == 'Active' %}
-              <td><span style="color: #fad60c;">{{i.currentStatus}}</span></td>
-              {% elif i.currentStatus == 'Dead' %}
-              <td><span style="color: #ff4141;">{{i.currentStatus}}</span></td>
-              {% elif i.currentStatus == 'Recovered' %}
-              <td><span style="color: #07ce00;">{{i.currentStatus}}</span></td>
-              {% endif %}
-              <td>{{i.patientID}}</td>
-              <td>{{i.operatedByDoctor}}</td>
-              <td>{{i.email}}</td>
-            </tr>
-          </a>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>

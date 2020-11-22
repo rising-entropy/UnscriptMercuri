@@ -368,7 +368,10 @@ class searchPatient(View):
                 reqPat = reqPat[0]
                 err["errorMessage"] = "Patient Found"
                 err["i"] = reqPat
+                return render(request, 'searchResult.html', err)
+
             except:
                 err["errorMessage"] = "Patient Not Found"
+                return render(request, template_name, err)
 
-        return render(request, template_name, err)
+        
